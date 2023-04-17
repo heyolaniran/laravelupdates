@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Post ; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,8 +19,17 @@ Route::get('/', function () {
 
 Route::prefix('/blog')->name("blog.")
 ->group(function () {
-    
+
     Route::get("/" , function () { 
+
+        $post = new Post() ; 
+        $post->title = "Mon premier article" ; 
+        $post->slug = "mon-premier-article" ; 
+        $post->content = " Le contenu de mon premier article" ; 
+        $post->save()  ; 
+
+        return $post  ; 
+        
         return  [
             'link' => route("blog.show" , ['slug' => 'article-posted' , 'id' =>13])
         ] ; 
