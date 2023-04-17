@@ -8,7 +8,11 @@ class PostController extends Controller
 {
     public function index()  { 
 
-        return  Post::paginate(25) ; 
+        $posts =  Post::paginate(1) ; 
+
+        return view("blog.index" , [
+            'posts' => $posts
+        ])  ; 
     } 
 
     public function show(string $slug , string $id) {
@@ -18,6 +22,8 @@ class PostController extends Controller
             return to_route('blog.show', ['slug' => $post->slug , 'id' => $post->id]) ; 
         }
  
-        return $post ; 
+        return view('blog.show', [
+            'post' => $post 
+        ]) ; 
     }
 }
