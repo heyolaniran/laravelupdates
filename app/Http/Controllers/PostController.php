@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post ;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\PostFilterRequest ; 
+
 class PostController extends Controller
 {
-    public function index()  { 
+    public function index( PostFilterRequest $request)  { 
+        \dd($request->validated()) ; 
+        $posts =  Post::paginate(25) ; 
 
-        $posts =  Post::paginate(1) ; 
 
         return view("blog.index" , [
             'posts' => $posts

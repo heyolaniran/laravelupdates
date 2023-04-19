@@ -5,14 +5,16 @@
 
 
 @section('content')
-<h1> Mon blog </h1>
+<h1 class="text-3xl font-bold justify-center flex">
+    Hello 
+  </h1>
 
 @foreach ($posts as $post)
 
 <article>
-    <h2> {{ $post->title }}</h2>
+    <h2 class="text-lg mb-2 font-semibold"> {{ $post->title }}</h2>
 
-    <p> {{  $post->content}} </p>
+    <p class="mb-2"> {{  $post->content}} </p>
 </article>
 
 @endforeach 
