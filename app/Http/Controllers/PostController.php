@@ -9,8 +9,8 @@ use App\Http\Requests\PostFilterRequest ;
 
 class PostController extends Controller
 {
-    public function index( PostFilterRequest $request)  { 
-        \dd($request->validated()) ; 
+    public function index( )  { 
+ 
         $posts =  Post::paginate(25) ; 
 
 
@@ -19,11 +19,12 @@ class PostController extends Controller
         ])  ; 
     } 
 
-    public function show(string $slug , string $id) {
-        $post = Post::findOrFail($id) ; 
+    public function show(string $slug , Post $post) {
 
+       
+       
         if($post->slug !== $slug) {
-            return to_route('blog.show', ['slug' => $post->slug , 'id' => $post->id]) ; 
+            return to_route('blog.show', ['slug' => $post->slug , 'post' => $post->id]) ; 
         }
  
         return view('blog.show', [
